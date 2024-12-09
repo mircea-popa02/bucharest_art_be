@@ -1,0 +1,11 @@
+npm i
+
+node app.js
+
+.env must be in the root of the project
+
+MONGO_URI=mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3
+JWT_SECRET=secret_discret
+JWT_EXPIRATION=30d
+
+needs mongodb local connection
