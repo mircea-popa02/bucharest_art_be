@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Galeria de Artă Contemporană MNAC",
+        "coordinates": { "latitude": 44.4268, "longitude": 26.1025 },
+        "type": "Contemporană",
+        "description": "Galerie națională cu expoziții de artă contemporană românească și internațională.",
+        "website": "http://www.mnac.ro",
+        "address": "Strada Izvor 2-4, București",
+        "contact_email": "contact@mnac.ro",
+        "phone": "+40 21 318 9137",
+        "events": ["Expoziții temporare", "Ateliere de artă"]
+    },
+    {
+        "name": "Artmark Auction House",
+        "coordinates": { "latitude": 44.4396, "longitude": 26.0963 },
+        "type": "Licitație",
+        "description": "Casă de licitații de artă cu opere de artă clasică și modernă.",
+        "website": "https://www.artmark.ro",
+        "address": "Palatul Cesianu-Racoviță, Strada C.A. Rosetti 5, București",
+        "contact_email": "info@artmark.ro",
+        "phone": "+40 21 210 3036",
+        "events": ["Licitații de artă", "Expoziții temporare"]
+    }
+]
