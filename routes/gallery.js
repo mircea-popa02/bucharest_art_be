@@ -1,18 +1,15 @@
-// routes/gallery.js
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const Gallery = require('../models/gallery');
 
-// Load locations from JSON file and insert them into MongoDB on server startup
 (async () => {
     try {
         const dataPath = path.join(__dirname, '..', 'locations.json');
         const fileContent = fs.readFileSync(dataPath, 'utf8');
         const locations = JSON.parse(fileContent);
 
-        // Optionally clear existing data before inserting new ones
         await Gallery.deleteMany({});
         await Gallery.insertMany(locations);
         console.log('Locations successfully inserted into MongoDB');
@@ -21,7 +18,6 @@ const Gallery = require('../models/gallery');
     }
 })();
 
-// Example routes for galleries
 router.get('/', async (req, res) => {
     try {
         const galleries = await Gallery.find({});
