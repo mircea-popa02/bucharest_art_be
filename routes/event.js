@@ -53,6 +53,24 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+// Get all events in which an user is interested and confirmed (2 arrays)
+router.get('/user', auth, async (req, res) => {
+    const userId = req.user.id;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const interestedEvents = await Event.find({ interestedParticipants: userId });
+        const confirmedEvents = await Event.find({ confirmedParticipants: userId });
+        res.json({ interestedEvents, confirmedEvents });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching user events' });
+    }
+});
+
 router.get('/:galleryId', auth, async (req, res) => {
     // Find all events for a specific gallery
     try {
@@ -168,5 +186,7 @@ router.patch('/:id/participants', auth, async (req, res) => {
         res.status(400).json({ error: 'Error updating participants' });
     }
 });
+
+
 
 module.exports = router;
