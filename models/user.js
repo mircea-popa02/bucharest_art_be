@@ -3,7 +3,10 @@ const bcrypt = require('bcryptjs')
 
 const user_schema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    interestedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
+    confirmedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
 })
 
 user_schema.pre('save', async function (next) {

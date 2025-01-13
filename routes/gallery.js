@@ -6,13 +6,17 @@ const Gallery = require('../models/gallery');
 
 (async () => {
     try {
-        const dataPath = path.join(__dirname, '..', 'locations.json');
-        const fileContent = fs.readFileSync(dataPath, 'utf8');
-        const locations = JSON.parse(fileContent);
+        const galleryCount = await Gallery.countDocuments({});
+        if (galleryCount === 0) {
+            const dataPath = path.join(__dirname, '..', 'locations.json');
+            const fileContent = fs.readFileSync(dataPath, 'utf8');
+            const locations = JSON.parse(fileContent);
 
-        await Gallery.deleteMany({});
-        await Gallery.insertMany(locations);
-        console.log('Locations successfully inserted into MongoDB');
+            await Gallery.insertMany(locations);
+            console.log('Locations successfully inserted into MongoDB');
+        } else {
+            console.log('Galleries collection is not empty, skipping insertion');
+        }
     } catch (error) {
         console.error('Error inserting locations into MongoDB:', error);
     }

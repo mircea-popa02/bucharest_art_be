@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
         const user = new User({ name, password })
         await user.save()
         const token = jwt.sign({ id: user._id, name: user.name }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION })
-        
+
         res.status(201).json({ token })
     } catch (error) {
         res.status(500).json({ error: 'Server error', message: error.message })
@@ -73,6 +73,18 @@ router.put('/change', auth, async (req, res) => {
     }
 })
 
+router.delete('/delete', auth, async (req, res) => {
+    const { id } = req.user;
+    try {
+        const user = await User.findById(id);
+        if (!user) return res.status(400).json({ error: 'User not found' });
 
+        await User.findByIdAndDelete(id);
+
+        res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error', message: error.message });
+    }
+});
 
 module.exports = router

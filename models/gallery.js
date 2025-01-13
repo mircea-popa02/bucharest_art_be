@@ -12,7 +12,7 @@ const gallerySchema = new mongoose.Schema({
     address: { type: String },
     contact_email: { type: String },
     phone: { type: String },
-    events: { type: [String] }
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
 });
 
 const Gallery = mongoose.model('Gallery', gallerySchema);
