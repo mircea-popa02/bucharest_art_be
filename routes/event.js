@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Event = require('../models/event');
 const Gallery = require('../models/gallery');
+const User = require('../models/user');
+const auth = require('../middleware/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     // Fetch all events with filters, search, and sorting
     try {
         const { galleryId, startDate, endDate, search, sort } = req.query;
@@ -52,7 +54,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/:galleryId', async (req, res) => {
+router.get('/:galleryId', auth, async (req, res) => {
     // Find all events for a specific gallery
     try {
         const gallery = await Gallery.findById(req.params.galleryId);
@@ -68,7 +70,7 @@ router.get('/:galleryId', async (req, res) => {
     }
 });
 
-router.post('/:galleryId', async (req, res) => {
+router.post('/:galleryId', auth, async (req, res) => {
     try {
         console.log(req.body);
         const event = new Event({ ...req.body, gallery: req.params.galleryId });
@@ -88,7 +90,7 @@ router.post('/:galleryId', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     try {
         const updatedEvent = await Event.findByIdAndUpdate(
             req.params.id,
@@ -105,7 +107,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const deletedEvent = await Event.findByIdAndDelete(req.params.id);
         if (!deletedEvent) {
@@ -118,9 +120,10 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id/participants', async (req, res) => {
-    const { userId, action } = req.body;
+router.patch('/:id/participants', auth, async (req, res) => {
+    const { action } = req.body;
     try {
+        const userId = req.user.id;
         const event = await Event.findById(req.params.id);
         if (!event) {
             return res.status(404).json({ error: 'Event not found' });
@@ -133,19 +136,38 @@ router.patch('/:id/participants', async (req, res) => {
             event.interestedParticipants.push(userId);
         } else if (action === 'confirmed') {
             event.confirmedParticipants.push(userId);
+        } else if (action === 'cancel') {
+            event.interestedParticipants.pull(userId);
+            event.confirmedParticipants.pull(userId);
         } else {
             return res.status(400).json({ error: 'Invalid action. Use "interested" or "confirmed".' });
         }
 
         await event.save();
+
+        // Update the user object to include the new event
+        const user = await User.findById(userId);
+        if (user) {
+            user.interestedEvents.pull(event._id);
+            user.confirmedEvents.pull(event._id);
+
+            if (action === 'interested') {
+                user.interestedEvents.push(event._id);
+            } else if (action === 'confirmed') {
+                user.confirmedEvents.push(event._id);
+            } else if (action === 'cancel') {
+                user.interestedEvents.pull(event._id);
+                user.confirmedEvents.pull(event._id);
+            }
+
+            await user.save();
+        }
+
         res.json(event);
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: 'Error updating participants' });
     }
 });
-
-module.exports = router;
-
 
 module.exports = router;
