@@ -53,7 +53,6 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-
 router.get('/:galleryId', auth, async (req, res) => {
     // Find all events for a specific gallery
     try {

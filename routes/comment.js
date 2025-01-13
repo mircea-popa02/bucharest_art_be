@@ -49,4 +49,17 @@ router.post('/:eventId', auth, async (req, res) => {
     }
 });
 
+// Get all comments of an user
+router.get('/', auth, async (req, res) => {
+    const name = req.user.name;
+    try {
+        console.log(name);
+        const comments = await Comment.find({ user: name });
+        res.json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching comments' });
+    }
+});
+
 module.exports = router;
