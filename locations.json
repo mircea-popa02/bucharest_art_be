@@ -1,6 +1,6 @@
 [
     {
-        "name": "Galeria de Artă Contemporană MNAC",
+        "name": "Galeria de Arta Contemporana MNAC",
         "coordinates": { "latitude": 44.4268, "longitude": 26.1025 },
         "type": "Contemporană",
         "description": "Galerie națională cu expoziții de artă contemporană românească și internațională.",
@@ -22,7 +22,7 @@
         "events": []
     },
     {
-        "name": "Galeria de Artă și Antichități Hanul cu Tei",
+        "name": "Galeria de Arta si Antichitati Hanul cu Tei",
         "coordinates": { "latitude": 44.4320, "longitude": 26.1026 },
         "type": "Galerie de Artă",
         "description": "Galerie situată în centrul istoric al Bucureștiului, oferind o varietate de opere de artă și antichități.",
@@ -33,7 +33,7 @@
         "events": []
     },
     {
-        "name": "Casa de Licitații ALIS",
+        "name": "Casa de Licitatii ALIS",
         "coordinates": { "latitude": 44.4334, "longitude": 26.0440 },
         "type": "Licitație",
         "description": "Casă de licitații specializată în vânzarea de obiecte de artă, bijuterii și antichități.",
@@ -44,7 +44,7 @@
         "events": []
     },
     {
-        "name": "Casa de Licitații Historic",
+        "name": "Casa de Licitatii Historic",
         "coordinates": { "latitude": 44.4350, "longitude": 26.0930 },
         "type": "Licitație",
         "description": "Singura casă de licitații din România dedicată bibliofiliei, fotografiei istorice și documentelor pe hârtie.",
@@ -55,7 +55,7 @@
         "events": []
     },
     {
-        "name": "Galeria de Artă Ara Art",
+        "name": "Galeria de Arta Ara Art",
         "coordinates": { "latitude": 44.4410, "longitude": 26.1025 },
         "type": "Galerie de Artă și Licitație",
         "description": "Galerie de artă contemporană, promovând artiști locali și internaționali.",
