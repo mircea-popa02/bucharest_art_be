@@ -95,6 +95,7 @@ router.post('/:galleryId', auth, async (req, res) => {
 
         // Update the gallery object to include the new event
         const gallery = await Gallery.findById(req.params.galleryId);
+        console.log(gallery);
         if (gallery) {
             gallery.events.push(event._id);
             await gallery.save();
@@ -184,6 +185,21 @@ router.patch('/:id/participants', auth, async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: 'Error updating participants' });
+    }
+});
+
+router.get('/:id/gallery', auth, async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        const gallery = await Gallery.findById(event.gallery);
+        res.json(gallery);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching gallery' });
     }
 });
 

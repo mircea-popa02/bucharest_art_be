@@ -8,11 +8,6 @@ const auth = require('../middleware/auth');
 router.get('/:eventId', auth, async (req, res) => {
     try {
         const comments = await Comment.find({ event: req.params.eventId });
-        // fetch the userName for each comment
-        for (const comment of comments) {
-            const user = await User.findById(comment.user);
-            comment.userName = user.name;
-        }
         res.json(comments);
     } catch (error) {
         console.error(error);
