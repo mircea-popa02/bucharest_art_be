@@ -20,5 +20,50 @@
         "contact_email": "info@artmark.ro",
         "phone": "+40 21 210 3036",
         "events": []
-    }
+    },
+    {
+        "name": "Galeria de Artă și Antichități Hanul cu Tei",
+        "coordinates": { "latitude": 44.4320, "longitude": 26.1026 },
+        "type": "Galerie de Artă",
+        "description": "Galerie situată în centrul istoric al Bucureștiului, oferind o varietate de opere de artă și antichități.",
+        "website": "https://tei15design.wordpress.com/",
+        "address": "Strada Lipscani 63, București 030167",
+        "contact_email": "galeria.atelier@yahoo.com",
+        "phone": "+40 76 571 6964",
+        "events": []
+    },
+    {
+        "name": "Casa de Licitații ALIS",
+        "coordinates": { "latitude": 44.4334, "longitude": 26.0440 },
+        "type": "Licitație",
+        "description": "Casă de licitații specializată în vânzarea de obiecte de artă, bijuterii și antichități.",
+        "website": "https://alis.ro/",
+        "address": "Bd. Iancu de Hunedoara nr.8 sect. 1, Bucuresti, Romania",
+        "contact_email": "office@alis.ro",
+        "phone": "+40 21 311 2014",
+        "events": []
+    },
+    {
+        "name": "Casa de Licitații Historic",
+        "coordinates": { "latitude": 44.4350, "longitude": 26.0930 },
+        "type": "Licitație",
+        "description": "Singura casă de licitații din România dedicată bibliofiliei, fotografiei istorice și documentelor pe hârtie.",
+        "website": "https://historic.ro/",
+        "address": "Strada Mircea Vulcănescu 5, București 010811",
+        "contact_email": "contact@historic-gallery.ro",
+        "phone": "+40 76 755 7799",
+        "events": []
+    },
+    {
+        "name": "Galeria de Artă Ara Art",
+        "coordinates": { "latitude": 44.4410, "longitude": 26.1025 },
+        "type": "Galerie de Artă și Licitație",
+        "description": "Galerie de artă contemporană, promovând artiști locali și internaționali.",
+        "website": "https://www.araart.ro/",
+        "address": "Strada Nicolae Filipescu 32, București 030167",
+        "contact_email": "office@araart.ro",
+        "phone": "+40 21 316 7150",
+        "events": []
+      }
+      
 ]
